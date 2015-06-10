@@ -1,0 +1,8 @@
+pollutantmean <- function(directory, pollutant, id = 1:332) {
+  library(plyr)
+  filenames <- sprintf("%03d.csv", id)
+  filenames <- paste(directory, filenames, sep="/")
+  ldf <- lapply(filenames, read.csv)
+  file=ldply(ldf)
+  mean(file[, pollutant], na.rm = TRUE)
+}
